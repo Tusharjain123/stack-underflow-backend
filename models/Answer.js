@@ -9,6 +9,10 @@ const Answer = Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     },
+    question :{
+        type: Schema.Types.ObjectId,
+        ref: 'Question'
+    },
     date: {
         type: Date,
         default: Date.now

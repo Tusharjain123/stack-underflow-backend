@@ -12,11 +12,6 @@ const Question = Schema({
     date: {
         type: Date,
         default: Date.now
-    },
-    replies: {
-        type: Schema.Types.Array,
-        ref:'Answer',
-        default: []
     }
 })
 

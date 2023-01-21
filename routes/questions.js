@@ -1,5 +1,6 @@
 const express = require('express');
 const fetchUser = require('../middleware/fetchuser');
+const Answer = require('../models/Answer');
 const router = express.Router();
 const Question = require('../models/Question');
 const User = require('../models/User');
@@ -13,6 +14,18 @@ router.get('/get/:questionId', async(req,res)=> {
     try {
         const question = await Question.findById(req.params.questionId);
         res.status(200).send(question)
+    } catch (error) {
+        res.status(500).json({error:error})
+    }
+})
+
+router.delete('/delete/:questionId', async (req,res)=> {
+    try {
+        const question = await Question.findById(req.params.questionId);
+        await question.deleteOne();
+        await Answer.deleteMany({question : req.params.questionId})
+
+        res.status(200).send('Successfully Q deleted')
     } catch (error) {
         res.status(500).json({error:error})
     }
