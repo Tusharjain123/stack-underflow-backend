@@ -25,6 +25,9 @@ const questionRoute = require('./routes/questions');
 app.use('/question',questionRoute);
 app.use("/v1/", require("./routes/Getuser.js"))
 
+const answerRoute = require('./routes/answer');
+app.use('/answer',answerRoute);
+
 app.listen(process.env.PORT,()=>{
     console.log("Server is started")
 })

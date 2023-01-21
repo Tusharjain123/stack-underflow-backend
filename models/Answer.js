@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
-const Question = Schema({
+const Answer = Schema({
     content : {
         type: String,
         required: true
@@ -12,12 +12,7 @@ const Question = Schema({
     date: {
         type: Date,
         default: Date.now
-    },
-    replies: {
-        type: Schema.Types.Array,
-        ref:'Answer',
-        default: []
     }
 })
 
-module.exports = mongoose.model("Question", Question)
+module.exports = mongoose.model("Answer", Answer)
