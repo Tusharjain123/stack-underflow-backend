@@ -5,7 +5,6 @@ const { body, validationResult } = require("express-validator")
 var bcrypt = require("bcryptjs")
 var jwt = require("jsonwebtoken")
 
-
 router.post("/createuser", [
     body("name", "Enter a valid name").isLength({ min: 3 }),
     body("email", "Enter a valid email").isEmail(),
