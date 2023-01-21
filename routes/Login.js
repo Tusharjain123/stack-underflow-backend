@@ -25,7 +25,13 @@ router.post("/login", [
       if (!passwordCompare){
         return res.status(400).json({error: "Pleasr try to login with correct credential"})
       }
-      res.status(200).send({msg : "Success"})
+      const data = {
+        user:{
+          id: user._id
+        }
+      }
+      const authToken = jwt.sign(data,JWT_Secret)
+      res.json(authToken)
     } catch (error) {
       console.error(error.message)
       res.status(500).send("Internal Servor Error")

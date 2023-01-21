@@ -29,7 +29,7 @@ router.post("/createuser", [
         email: req.body.email,
         userVerification : authToken
       })
-      res.json({authToken})
+      res.json({user})
     }
     catch (error) {
       console.error(error.message)
