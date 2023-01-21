@@ -14,10 +14,12 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json())
 
-
 app.get("/", (req,res)=>{
-res.send("Working")})
+    res.send("Working")
+})
 
+const questionRoute = require('./routes/questions');
+app.use('/question',questionRoute);
 
 app.listen(process.env.PORT,()=>{
     console.log("Server is started")
