@@ -29,7 +29,13 @@ router.post("/createuser", [
         email: req.body.email,
         userVerification : authToken
       })
-      res.json({user})
+      const data = {
+        user: {
+          id: user.id
+        }
+      }
+      const authtoken = jwt.sign(data, process.env.JWT_SECRET);
+      res.json({ authtoken })
     }
     catch (error) {
       console.error(error.message)

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 var bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
 require("dotenv").config();
 const { body, validationResult } = require("express-validator")
 const User = require("../models/User.js");
@@ -13,7 +14,6 @@ router.post("/login", [
     if (!errors.isEmpty()) {
       return res.status(400).json({msg : "Error occured"});
     }
-  
     const {email, password} =req.body
     try {
       let user = await User.findOne({email})
@@ -27,11 +27,14 @@ router.post("/login", [
       }
       const data = {
         user:{
-          id: user._id
+          id: user.id
         }
       }
-      const authToken = jwt.sign(data,JWT_Secret)
-      res.json(authToken)
+      const authtoken = jwt.sign(data,process.env.JWT_Secret)
+      let success = true;
+      res.setHeader("auth-token", authtoken)
+      res.json({ success, authtoken })
+     
     } catch (error) {
       console.error(error.message)
       res.status(500).send("Internal Servor Error")
