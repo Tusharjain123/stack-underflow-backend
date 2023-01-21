@@ -3,13 +3,14 @@ const router = express.Router();
 const Question = require('../models/Question');
 const User = require('../models/User');
 
-router.get('/', async (req,res)=>{
-    res.send('question route')
+router.get('/all', async (req,res)=>{
+    const questions = await Question.find();
+    res.status(200).send(questions);
 });
 
 router.post('/new', async (req,res) => {
     try {
-        const user = User.findById(req.body.userId)
+        const user = await User.findOne({email:req.body.email})
         const new_question = new Question({
             content: req.body.content,
             author: user
@@ -21,7 +22,6 @@ router.post('/new', async (req,res) => {
         .catch(err => {
             res.json({message : err})  
           })
-          
     } catch (error) {
         res.status(500).json({error:error})
     }

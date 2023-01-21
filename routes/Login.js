@@ -25,6 +25,7 @@ router.post("/login", [
       if (!passwordCompare){
         return res.status(400).json({error: "Pleasr try to login with correct credential"})
       }
+      
       res.status(200).send({msg : "Success"})
     } catch (error) {
       console.error(error.message)
