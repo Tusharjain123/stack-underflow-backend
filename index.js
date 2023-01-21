@@ -21,6 +21,8 @@ app.use("/v1/loggedin" , require("./routes/Login.js"))
 app.get("/", (req,res)=>{
 res.send("Working")})
 
+const questionRoute = require('./routes/questions');
+app.use('/question',questionRoute);
 
 app.listen(process.env.PORT,()=>{
     console.log("Server is started")
