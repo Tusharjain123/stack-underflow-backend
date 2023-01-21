@@ -1,4 +1,5 @@
 const express = require('express');
+const fetchUser = require('../middleware/fetchuser');
 const router = express.Router();
 const Question = require('../models/Question');
 const User = require('../models/User');
@@ -8,9 +9,10 @@ router.get('/all', async (req,res)=>{
     res.status(200).send(questions);
 });
 
-router.post('/new', async (req,res) => {
+router.post('/new',fetchUser ,async (req,res) => {
     try {
-        const user = await User.findOne({email:req.body.email})
+        userId = req.user.id
+        const user = await User.findById(userId).select("-password")
         const new_question = new Question({
             content: req.body.content,
             author: user
