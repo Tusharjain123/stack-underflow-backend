@@ -6,8 +6,12 @@ const StackUnderflowSchema = mongoose.Schema({
         required: true
     },
     password : {
-        type: Number,
+        type: String,
         required : true
+    },
+    userVerification:{
+        type : String,
+        required: true
     }
 })
 

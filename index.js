@@ -14,9 +14,12 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.json())
 
+app.use("/v1/signup" , require("./routes/SignUp.js"))
+app.use("/v1/loggedin" , require("./routes/Login.js"))
+
+
 app.get("/", (req,res)=>{
-    res.send("Working")
-})
+res.send("Working")})
 
 const questionRoute = require('./routes/questions');
 app.use('/question',questionRoute);
