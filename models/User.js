@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const TabifySchema = mongoose.Schema({
+const StackUnderflowSchema = mongoose.Schema({
     email : {
         type: String,
         required: true
@@ -8,11 +8,7 @@ const TabifySchema = mongoose.Schema({
     password : {
         type: Number,
         required : true
-    },
-    choices : {
-        type: String,
-        required : true
     }
 })
 
-module.exports = mongoose.model("user", TabifySchema)
+module.exports = mongoose.model("user", StackUnderflowSchema)
