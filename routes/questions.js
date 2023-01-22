@@ -6,7 +6,7 @@ const Question = require('../models/Question');
 const User = require('../models/User');
 
 router.get('/all', async (req,res)=>{
-    const questions = await Question.find();
+    const questions = await Question.find().sort({date: -1});
     res.status(200).send(questions);
 });
 
