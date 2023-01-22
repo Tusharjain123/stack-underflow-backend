@@ -23,10 +23,16 @@ res.send("Working")})
 
 const questionRoute = require('./routes/questions');
 app.use('/question',questionRoute);
-app.use("/v1/", require("./routes/Getuser.js"))
+app.use("/v1/", require("./routes/Getuser.js"));
 
 const answerRoute = require('./routes/answer');
 app.use('/answer',answerRoute);
+
+const communityRoute = require('./routes/community');
+app.use('/community',communityRoute);
+
+const userRoute = require('./routes/user');
+app.use('/user',userRoute);
 
 app.listen(process.env.PORT,()=>{
     console.log("Server is started")
