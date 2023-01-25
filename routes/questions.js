@@ -6,7 +6,7 @@ const Question = require('../models/Question');
 const User = require('../models/User');
 
 router.get('/all', async (req,res)=>{
-    const questions = await Question.find().sort({date: -1});
+    const questions = await Question.find({}).sort({date: -1});
     res.status(200).send(questions);
 });
 
@@ -37,7 +37,7 @@ router.post('/new',fetchUser ,async (req,res) => {
         const user = await User.findById(userId).select("-password")
         const new_question = new Question({
             content: req.body.content,
-            author: user 
+            author: [user.name? user.name : "Anonymous", user] 
         })
         new_question.save()
         .then(data => {

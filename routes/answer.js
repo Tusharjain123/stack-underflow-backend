@@ -41,7 +41,7 @@ router.post('/create/:questionId', fetchUser ,async (req,res)=>{
         const user = await User.findById(userId).select("-password")
         const answer = new Answer({
             content: req.body.content,
-            author: user,
+            author: [user.name? user.name : "Anonymous", user] ,
             question: question
         });
         answer.save();

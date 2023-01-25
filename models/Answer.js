@@ -6,8 +6,8 @@ const Answer = Schema({
         required: true
     },
     author : {
-        type: Schema.Types.ObjectId,
-        ref: 'user'
+        type: Array,
+        required : true
     },
     question :{
         type: Schema.Types.ObjectId,
